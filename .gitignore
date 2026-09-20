@@ -1,0 +1,27 @@
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+.vite/
+
+# Java / Spring Boot Backend
+backend/target/
+target/
+*.class
+.mvn/
+mvnw
+mvnw.cmd
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+ai-service/__pycache__/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+.DS_Store
