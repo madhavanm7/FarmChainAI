@@ -1,9 +1,11 @@
 import React from 'react';
+import QRCodeImage from './QRCodeImage';
 
 export default function QRDisplay({ batch, onClose, onNavigateTrace }) {
   if (!batch) return null;
 
-  const traceUrl = `/trace/${batch.batchId}`;
+  const tracePath = `/trace/${batch.batchId}`;
+  const fullTraceUrl = typeof window !== 'undefined' ? `${window.location.origin}${tracePath}` : tracePath;
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
@@ -23,7 +25,12 @@ export default function QRDisplay({ batch, onClose, onNavigateTrace }) {
         <p className="text-xs text-slate-400 font-mono mb-4">{batch.batchId}</p>
 
         <div className="bg-white p-4 rounded-2xl inline-block shadow-lg mb-4">
-          <img src={batch.qrData} alt={`QR for ${batch.batchId}`} className="w-48 h-48 mx-auto" />
+          <QRCodeImage
+            text={fullTraceUrl}
+            qrData={batch.qrData}
+            alt={`QR for ${batch.batchId}`}
+            className="w-48 h-48 mx-auto"
+          />
         </div>
 
         <p className="text-xs text-slate-400 mb-6 px-2">

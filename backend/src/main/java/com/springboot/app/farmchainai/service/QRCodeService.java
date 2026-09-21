@@ -22,8 +22,7 @@ public class QRCodeService {
             byte[] pngData = outputStream.toByteArray();
             return "data:image/png;base64," + Base64.getEncoder().encodeToString(pngData);
         } catch (Exception e) {
-            // Fallback mock QR data URI if encoding fails
-            return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==";
+            return null;
         }
     }
 }

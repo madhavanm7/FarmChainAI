@@ -1,4 +1,5 @@
 import React from 'react';
+import QRCodeImage from './QRCodeImage';
 
 export default function BatchCard({ batch, onAction, actionLabel, onShowQR }) {
   const statusColors = {
@@ -9,6 +10,9 @@ export default function BatchCard({ batch, onAction, actionLabel, onShowQR }) {
     TRANSFERRED: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/30',
     RECEIVED: 'bg-teal-500/10 text-teal-400 border-teal-500/30'
   };
+
+  const tracePath = `/trace/${batch.batchId}`;
+  const fullTraceUrl = typeof window !== 'undefined' ? `${window.location.origin}${tracePath}` : tracePath;
 
   return (
     <div className="bg-slate-800/60 rounded-2xl p-6 border border-slate-700/60 hover:border-emerald-500/40 transition-all shadow-xl backdrop-blur-sm relative overflow-hidden group">
@@ -29,15 +33,18 @@ export default function BatchCard({ batch, onAction, actionLabel, onShowQR }) {
           </h3>
         </div>
 
-        {batch.qrData && (
-          <button
-            onClick={() => onShowQR(batch)}
-            className="p-2 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-emerald-500/50 transition group-hover:scale-105"
-            title="View Batch QR Code"
-          >
-            <img src={batch.qrData} alt="QR Code" className="w-12 h-12 rounded" />
-          </button>
-        )}
+        <button
+          onClick={() => onShowQR(batch)}
+          className="p-1.5 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-emerald-500/50 transition group-hover:scale-105"
+          title="View Batch QR Code"
+        >
+          <QRCodeImage
+            text={fullTraceUrl}
+            qrData={batch.qrData}
+            alt="QR Code"
+            className="w-11 h-11 rounded"
+          />
+        </button>
       </div>
 
       <div className="grid grid-cols-2 gap-3 text-sm mb-6 bg-slate-900/40 p-3 rounded-xl border border-slate-800">
