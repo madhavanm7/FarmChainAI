@@ -88,12 +88,6 @@ export default function App() {
           onNavigateTrace={handleNavigateTrace}
         />
       )}
-
-      {/* Footer */}
-      <footer className="border-t border-slate-800 bg-slate-950 py-6 text-center text-xs text-slate-500">
-        <p>FarmChain AI — Prototype built according to working_principle.pdf</p>
-        <p className="mt-1 font-mono text-slate-600">Spring Boot Backend • EVM Smart Contract • FastAPI AI • React UI</p>
-      </footer>
     </div>
   );
 }
